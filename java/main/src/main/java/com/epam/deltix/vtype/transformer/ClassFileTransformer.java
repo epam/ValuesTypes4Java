@@ -26,7 +26,7 @@ import java.security.ProtectionDomain;
 import java.util.concurrent.atomic.AtomicReference;
 
 import static org.objectweb.asm.ClassWriter.COMPUTE_MAXS;
-import static org.objectweb.asm.Opcodes.ASM7;
+import static org.objectweb.asm.Opcodes.ASM9;
 
 
 class ClassFileTransformer implements java.lang.instrument.ClassFileTransformer {
@@ -238,7 +238,7 @@ class ClassFileTransformer implements java.lang.instrument.ClassFileTransformer 
                     System.out.printf("Start ClassReader for class: %s%n", className);
                 }
 
-                org.objectweb.asm.ClassVisitor cv = new com.epam.deltix.vtype.transformer.ClassVisitor(ASM7, prev, state);
+                org.objectweb.asm.ClassVisitor cv = new com.epam.deltix.vtype.transformer.ClassVisitor(ASM9, prev, state);
                 cr.accept(cv, 0);
 
                 boolean transformed = state.classWasTransformed;
