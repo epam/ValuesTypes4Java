@@ -103,6 +103,9 @@ Annotations only checked by name, so *no need to include any ValueType agent pac
 Value Type Agent
 * [Implementation of IF_ACMPxx opcodes](docs/IFACMPXX.md)
 
+### Credit:
+
+Before it was donated to GITHUB this library was originally developed by [Barys Chupryn](https://github.com/noop-dev) at Deltix.
 
 ### Version history:
 

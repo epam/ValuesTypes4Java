@@ -21,7 +21,7 @@ import org.objectweb.asm.AnnotationVisitor;
 import org.objectweb.asm.MethodVisitor;
 
 import static org.objectweb.asm.Opcodes.ACC_STATIC;
-import static org.objectweb.asm.Opcodes.ASM7;
+import static org.objectweb.asm.Opcodes.ASM9;
 
 public class VTypeSrcMethodVisitor extends MethodVisitor {
     private final ClassDef classDef;
@@ -31,7 +31,7 @@ public class VTypeSrcMethodVisitor extends MethodVisitor {
     private String impl;
 
     public VTypeSrcMethodVisitor(int access, String name, String desc, ClassDef classDef, MethodVisitor mv) {
-        super(ASM7, mv);
+        super(ASM9, mv);
         this.impl = null;
         this.access = access;
         this.name = name;
