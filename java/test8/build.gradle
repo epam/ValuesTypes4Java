@@ -1,5 +1,5 @@
 /*
- * Copyright 2021 EPAM Systems, Inc
+ * Copyright 2021-2024 EPAM Systems, Inc
  *
  * See the NOTICE file distributed with this work for additional information
  * regarding copyright ownership. Licensed under the Apache License,
@@ -20,44 +20,4 @@ apply plugin: "java"
 sourceCompatibility=1.8
 targetCompatibility=1.8
 
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-}
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    compile "com.epam.deltix:dfp:$dfpVersion"
-    compile project(':java:value-types')
-
-    compile 'com.google.code.java-allocation-instrumenter:java-allocation-instrumenter:3.1.0'
-    compile group: "com.fasterxml.jackson.core", name: "jackson-databind", version: "2.9.4"
-    compile group: "junit", name: "junit", version: "4.+"
-}
-
-test {
-    outputs.upToDateWhen { false }
-    def disableAllocationDetector = true
-    def javaAllocationInstrumenterJar = configurations.testCompile.find {it.name.startsWith('java-allocation-instrumenter')}
-    def vtAgentJar = configurations.testCompile.find {it.name.startsWith('value-types-0')}
-
-    def valueTypeAgent = '-javaagent:' + vtAgentJar + '=' + rootDir + "/cfg/valuetype-tests.json"
-    jvmArgs += valueTypeAgent
-
-    def allocationAgent = '-javaagent:' + javaAllocationInstrumenterJar
-
-    if(disableAllocationDetector) {
-        jvmArgs += '-Ddisable.allocation.detector=true'
-    } else {
-        jvmArgs += allocationAgent
-    }
-
-    testLogging {
-        exceptionFormat 'full'
-        events "passed", "skipped", "failed", "standardOut", "standardError"
-    }
-}
+apply from: "../tests-common.gradle"

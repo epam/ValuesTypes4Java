@@ -22,8 +22,6 @@ apply plugin: 'signing'
 sourceCompatibility=1.8
 targetCompatibility=1.8
 
-group "com.epam.deltix"
-
 buildscript {
     repositories {
         mavenCentral()
@@ -37,14 +35,14 @@ repositories {
 ext.isReleaseVersion = !version.endsWith("SNAPSHOT")
 
 task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = 'sources'
-    baseName = archivesBaseName
+    archiveClassifier = 'sources'
+    archiveBaseName = archivesBaseName
     from sourceSets.main.allSource
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    baseName = archivesBaseName
+    archiveClassifier = 'javadoc'
+    archiveBaseName = archivesBaseName
     from javadoc.destinationDir
 }
 
