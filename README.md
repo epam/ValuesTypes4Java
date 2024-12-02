@@ -1,4 +1,4 @@
-# ValueTypes4Java.
+# ValueTypes4Java
 Java Agent classloader to implement transformation of operations on specific classes into operations on long integer values.
 
 ### Basic principles of operation
